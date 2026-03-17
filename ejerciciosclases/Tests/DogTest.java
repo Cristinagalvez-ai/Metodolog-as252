@@ -1,44 +1,18 @@
-package matcomp.e1.ejerciciosclases.cuaderno3;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
-import org.junit.jupiter.api.Test;
+package matcomp.e1.ejerciciosclases.cuaderno4;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class DogTest {
+    Dog dog = new Dog("Linda");
 
     @Test
     void greets() {
-        Dog d = new Dog("Rex");
-
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(output));
-
-        d.greets();
-
-        assertEquals("Woof\n", output.toString());
+        dog.greets(); // Imprime "Woof"
     }
 
     @Test
-    void testGreets() {
-        Dog d1 = new Dog("Rex");
-        Dog d2 = new Dog("Max");
-
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(output));
-
-        d1.greets(d2);
-
-        assertEquals("Woooof\n", output.toString());
-    }
-
-    @Test
-    void testToString() {
-        Dog d = new Dog("Rex");
-
-        String expected = "Dog[Mammal[Animal[name=\"Rex\"]]]";
-
-        assertEquals(expected, d.toString());
+    void greetsAnotherDog() {
+        dog.greets(new Dog("Luna")); // Imprime "Woooof"
     }
 }

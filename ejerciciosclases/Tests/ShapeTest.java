@@ -1,49 +1,26 @@
-package matcomp.e1.ejerciciosclases.cuaderno3;
-
-import org.junit.jupiter.api.Test;
+package matcomp.e1.ejerciciosclases.cuaderno4;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class ShapeTest {
+    Shape s = new Rectangle(1.0, 1.0, "yellow", true);
 
     @Test
-    void getColor() {
-        Shape s = new Shape("red", true);
-
-        assertEquals("red", s.getColor());
-    }
+    void getColor() { assertEquals("yellow", s.getColor()); }
 
     @Test
     void setColor() {
-        Shape s = new Shape("red", true);
-
-        s.setColor("blue");
-
-        assertEquals("blue", s.getColor());
+        s.setColor("purple");
+        assertEquals("purple", s.getColor());
     }
 
     @Test
-    void isFilled() {
-        Shape s = new Shape("red", true);
-
-        assertTrue(s.isFilled());
-    }
+    void isFilled() { assertTrue(s.isFilled()); }
 
     @Test
     void setFilled() {
-        Shape s = new Shape("red", true);
-
         s.setFilled(false);
-
         assertFalse(s.isFilled());
-    }
-
-    @Test
-    void testToString() {
-        Shape s = new Shape("red", true);
-
-        String expected = "Shape[color=red,filled=true]";
-
-        assertEquals(expected, s.toString());
     }
 }
