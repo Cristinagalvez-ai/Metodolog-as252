@@ -1,67 +1,68 @@
-package matcomp.e1.ejerciciosclases.cuaderno1;
-
-import org.junit.jupiter.api.Test;
+package matcomp.e1.ejerciciosclases.cuaderno2.customer2;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import matcomp.e1.ejerciciosclases.cuaderno2.customer2.*;
 
 class AccountTest {
+    Customer c = new Customer(10, "Elena", 'f');
+    Account account = new Account(88, c, 500.0);
 
     @Test
     void getId() {
-        Account acc = new Account("A1", "Cris", 100);
-
-        assertEquals("A1", acc.getId());
+        assertEquals(88, account.getId());
     }
 
     @Test
-    void getName() {
-        Account acc = new Account("A1", "Cris", 100);
-
-        assertEquals("Cris", acc.getName());
+    void getCustomer() {
+        assertEquals(c, account.getCustomer());
     }
 
     @Test
     void getBalance() {
-        Account acc = new Account("A1", "Cris", 100);
-
-        assertEquals(100, acc.getBalance());
+        assertEquals(500.0, account.getBalance());
     }
 
     @Test
-    void credit() {
-        Account acc = new Account("A1", "Cris", 100);
-
-        acc.credit(50);
-
-        assertEquals(150, acc.getBalance());
+    void setBalance() {
+        account.setBalance(1000.50);
+        assertEquals(1000.50, account.getBalance());
     }
 
     @Test
-    void debit() {
-        Account acc = new Account("A1", "Cris", 100);
-
-        acc.debit(30);
-
-        assertEquals(70, acc.getBalance());
+    void getCustomerName() {
+        assertEquals("Elena", account.getCustomerName());
     }
 
     @Test
-    void transferTo() {
-        Account acc1 = new Account("A1", "Cris", 100);
-        Account acc2 = new Account("A2", "Ana", 50);
+    void deposit() {
+        account.deposit(100.0);
+        assertEquals(600.0, account.getBalance());
+    }
 
-        acc1.transferTo(acc2, 40);
+    @Test
+    void withdrawSuccess() {
+        account.withdraw(200.0);
+        assertEquals(300.0, account.getBalance());
+    }
 
-        assertEquals(60, acc1.getBalance());
-        assertEquals(90, acc2.getBalance());
+    @Test
+    void withdrawFail() {
+        // Intento de retirar más de lo que hay (500.0)
+        account.withdraw(600.0);
+        assertEquals(500.0, account.getBalance()); // El saldo no debe cambiar
     }
 
     @Test
     void testToString() {
-        Account acc = new Account("A1", "Cris", 100);
+        // Verifica el formato de dos decimales del balance
+        assertEquals("Elena(10) balance=$500.00", account.toString());
+    }
 
-        String expected = "Account[id=A1,name=Cris,balance=100]";
-
-        assertEquals(expected, acc.toString());
+    @Test
+    void testChaining() {
+        // Verifica que los métodos devuelven el objeto account para encadenar
+        account.deposit(50).withdraw(100);
+        assertEquals(450.0, account.getBalance());
     }
 }
