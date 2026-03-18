@@ -1,26 +1,65 @@
-package matcomp.e1.ejerciciosclases.cuaderno4;
+package matcomp.e1.ejerciciosclases.cuaderno1;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class RectangleTest {
-    Rectangle r = new Rectangle(2.0, 4.0, "blue", false);
 
     @Test
-    void getWidth() { assertEquals(2.0, r.getWidth()); }
+    void getLength() {
+        Rectangle r = new Rectangle(4.0f, 5.0f);
+
+        assertEquals(5.0, r.getLength(), 0.0001);
+    }
 
     @Test
-    void getLength() { assertEquals(4.0, r.getLength()); }
+    void setLength() {
+        Rectangle r = new Rectangle(4.0f, 5.0f);
+
+        r.setLength(10.0f);
+
+        assertEquals(10.0, r.getLength(), 0.0001);
+    }
 
     @Test
-    void getArea() { assertEquals(8.0, r.getArea()); }
+    void getWidth() {
+        Rectangle r = new Rectangle(4.0f, 5.0f);
+
+        assertEquals(4.0, r.getWidth(), 0.0001);
+    }
 
     @Test
-    void getPerimeter() { assertEquals(12.0, r.getPerimeter()); }
+    void setWidth() {
+        Rectangle r = new Rectangle(4.0f, 5.0f);
+
+        r.setWidth(8.0f);
+
+        assertEquals(8.0, r.getWidth(), 0.0001);
+    }
+
+    @Test
+    void getArea() {
+        Rectangle r = new Rectangle(4.0f, 5.0f);
+
+        // 4 * 5 = 20
+        assertEquals(20.0, r.getArea(), 0.0001);
+    }
+
+    @Test
+    void getPerimeter() {
+        Rectangle r = new Rectangle(4.0f, 5.0f);
+
+        // 2 * (4 + 5) = 18
+        assertEquals(18.0, r.getPerimeter(), 0.0001);
+    }
 
     @Test
     void testToString() {
-        assertTrue(r.toString().contains("Rectangle"));
-        assertTrue(r.toString().contains("width=2.0"));
+        Rectangle r = new Rectangle(4.0f, 5.0f);
+
+        String expected = "Rectangle[length=5.0,width=4.0]";
+
+        assertEquals(expected, r.toString());
     }
 }
